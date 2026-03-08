@@ -1,0 +1,85 @@
+{
+  "_comment": "OpenClaw Framework — example configuration. Copy to ~/.openclaw/openclaw.json and customize.",
+
+  "agents": {
+    "defaults": {
+      "model": "anthropic/claude-sonnet-4-6",
+      "workspace": "~/.openclaw/workspace",
+
+      "thinking": {
+        "default": "adaptive"
+      },
+
+      "compaction": {
+        "reserveTokensFloor": 20000,
+        "memoryFlush": {
+          "enabled": true,
+          "softThresholdTokens": 4000
+        }
+      },
+
+      "memorySearch": {
+        "enabled": true,
+        "provider": "openai",
+        "model": "text-embedding-3-small",
+        "extraPaths": ["brain/", "skills/"],
+        "query": {
+          "hybrid": {
+            "enabled": true,
+            "vectorWeight": 0.7,
+            "textWeight": 0.3,
+            "mmr": {
+              "enabled": true,
+              "lambda": 0.7
+            },
+            "temporalDecay": {
+              "enabled": true,
+              "halfLifeDays": 30
+            }
+          }
+        }
+      },
+
+      "heartbeat": {
+        "enabled": true,
+        "intervalMinutes": 30,
+        "prompt": "Read HEARTBEAT.md if it exists. Follow it strictly. If nothing needs attention, reply HEARTBEAT_OK."
+      }
+    }
+  },
+
+  "channels": {
+    "discord": {
+      "token": "${DISCORD_BOT_TOKEN}",
+      "allowFrom": ["YOUR_USER_ID_HERE"],
+      "groupPolicy": "allowlist",
+      "groupAllowFrom": ["YOUR_USER_ID_HERE"]
+    }
+  },
+
+  "auth": {
+    "profiles": {
+      "default": {
+        "provider": "anthropic",
+        "apiKey": "${ANTHROPIC_API_KEY}"
+      }
+    }
+  },
+
+  "_hooks_comment": "Hooks fire on gateway events. See docs/automation/hooks for all options.",
+  "hooks": {
+    "bootMd": {
+      "enabled": true,
+      "path": "BOOT.md"
+    }
+  },
+
+  "_memory_comment": "Advanced memory search — BM25 + vector hybrid with recency boost.",
+  "_cron_comment": "Use openclaw cron add for scheduled tasks instead of system cron.",
+
+  "_notes": [
+    "Set DISCORD_BOT_TOKEN, ANTHROPIC_API_KEY as environment variables",
+    "Never put real API keys in this file — use env vars",
+    "Run 'openclaw gateway start' after configuring"
+  ]
+}

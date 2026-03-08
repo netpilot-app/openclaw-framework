@@ -43,10 +43,21 @@ Step-by-step checklist for setting up your OpenClaw instance.
 ## Automation
 
 - [ ] Ran `bash scripts/setup.sh`
-- [ ] Cron jobs installed (verify with `cat /etc/cron.d/openclaw-framework`)
+- [ ] OpenClaw cron jobs installed (verify with `openclaw cron list`)
+  - [ ] backup — runs every hour
+  - [ ] unanswered — runs every 10 minutes
+  - [ ] memory-distill — runs nightly at 02:00
+  - [ ] self-review — runs Monday 08:00
+- [ ] (Fallback) If not using openclaw cron: verify with `cat /etc/cron.d/openclaw-framework`
 - [ ] Discord channel IDs updated in `scripts/unanswered-check.mjs`
 - [ ] Bot user ID updated in `scripts/unanswered-check.mjs`
 - [ ] Evolution channel ID updated in `scripts/self-review.mjs`
+
+## Hooks & Boot
+
+- [ ] `BOOT.md` present in workspace root
+- [ ] `hooks.bootMd.enabled: true` set in `openclaw.json`
+- [ ] Verified BOOT.md runs on gateway start (check gateway logs)
 
 ## First Tests
 

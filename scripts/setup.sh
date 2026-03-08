@@ -49,6 +49,16 @@ CRON
 
 echo "✅ Cron jobs installed at ${CRON_FILE}"
 
+# If openclaw is available, prefer openclaw cron
+if command -v openclaw &>/dev/null; then
+  echo "⚙️  Setting up OpenClaw cron jobs (preferred)..."
+  openclaw cron add --name "backup" --schedule "0 * * * *" --command "/usr/local/bin/openclaw-backup.sh" 2>/dev/null || true
+  openclaw cron add --name "unanswered" --schedule "*/10 * * * *" --command "node ${WORKSPACE}/scripts/unanswered-check.mjs" 2>/dev/null || true
+  openclaw cron add --name "memory-distill" --schedule "0 2 * * *" --command "node ${WORKSPACE}/scripts/memory-distill.mjs" 2>/dev/null || true
+  openclaw cron add --name "self-review" --schedule "0 8 * * 1" --command "node ${WORKSPACE}/scripts/self-review.mjs" 2>/dev/null || true
+  echo "✅ OpenClaw cron jobs installed"
+fi
+
 echo ""
 echo "🎉 Setup complete! Next steps:"
 echo "  1. Edit SOUL.md — give your agent a personality"
