@@ -1,0 +1,61 @@
+{
+  "_comment": "Multi-agent team configuration — Paperclip-style. Copy relevant sections to openclaw.json",
+
+  "agents": {
+    "defaults": {
+      "model": "anthropic/claude-sonnet-4-6",
+      "thinking": { "default": "adaptive" },
+      "compaction": {
+        "reserveTokensFloor": 20000,
+        "memoryFlush": { "enabled": true }
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "_comment": "Main orchestrator — what users talk to",
+        "workspace": "~/.openclaw/workspace"
+      },
+      {
+        "id": "forge",
+        "_comment": "Code + builds — use cheap model",
+        "model": "kimi-coding/k2p5",
+        "workspace": "~/.openclaw/workspace-forge"
+      },
+      {
+        "id": "scout",
+        "_comment": "Research + analysis",
+        "workspace": "~/.openclaw/workspace-scout"
+      },
+      {
+        "id": "nova",
+        "_comment": "Project management + standups",
+        "workspace": "~/.openclaw/workspace-nova"
+      },
+      {
+        "id": "ops",
+        "_comment": "Infrastructure + monitoring",
+        "workspace": "~/.openclaw/workspace-ops"
+      },
+      {
+        "id": "aria",
+        "_comment": "Strategy + architecture — use powerful model",
+        "model": "anthropic/claude-opus-4-6",
+        "workspace": "~/.openclaw/workspace-aria"
+      }
+    ]
+  },
+
+  "channels": {
+    "discord": {
+      "token": "${DISCORD_BOT_TOKEN}",
+      "allowFrom": ["YOUR_USER_ID_HERE"],
+      "_comment": "Route different Discord channels to different agents",
+      "bindings": [
+        { "channelId": "MAIN_CHANNEL_ID", "agentId": "main" },
+        { "channelId": "FORGE_CHANNEL_ID", "agentId": "forge" },
+        { "channelId": "ARIA_CHANNEL_ID", "agentId": "aria" }
+      ]
+    }
+  }
+}
