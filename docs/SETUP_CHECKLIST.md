@@ -66,6 +66,22 @@ Step-by-step checklist for setting up your OpenClaw instance.
 - [ ] Discord reaction test (👀 → 🧠 → ✅)
 - [ ] Agent introduced themselves to human
 
+## Choosing a Persona
+
+Copy a persona template as your SOUL.md:
+```bash
+# Personal assistant (recommended for most users)
+cp personas/personal-assistant.md SOUL.md
+
+# Developer agent
+cp personas/dev-agent.md SOUL.md
+
+# Team manager
+cp personas/team-manager.md SOUL.md
+```
+
+Then customize it to fit your needs.
+
 ## You're Live! 🦞
 
 Once everything is checked off, your agent is ready to go.

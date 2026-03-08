@@ -19,6 +19,11 @@ mkdir -p "${WORKSPACE}/config"
 mkdir -p "${WORKSPACE}/skills"
 echo "✅ Directory structure created"
 
+# Run interactive wizard
+echo ""
+bash "$(dirname "$0")/wizard.sh"
+echo ""
+
 # Create portable backup script
 BACKUP_SCRIPT="/usr/local/bin/openclaw-backup.sh"
 cat > "$BACKUP_SCRIPT" << BACKUP
