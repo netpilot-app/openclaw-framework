@@ -1,35 +1,42 @@
-# OpenClaw Framework — Git Ignore
+# OpenClaw Framework .gitignore
 
-# Memory files (personal, don't commit)
-/memory/
-/memory/*.md
-
-# Environment files
+# Personal/secret files — never commit these
 .env
-.env.local
-.env.*.local
+.env.*
+*.token
+*token*
+*secret*
+auth.json
+auth-profiles.json
+*credentials*
+*.key
+
+# OpenClaw state
+.openclaw/agents/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
 
 # Logs
 *.log
-/var/log/
+logs/
+
+# Node
+node_modules/
+.npm/
 
 # OS files
 .DS_Store
 Thumbs.db
-
-# IDE
-.vscode/
-.idea/
 *.swp
 *.swo
-*~
 
-# Node
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Editor
+.vscode/settings.json
+.idea/
 
-# Backup files
-*.bak
-*.bak.*
+# Personal memory — DO NOT commit these to shared repos
+# (comment out if this IS your personal workspace repo)
+# MEMORY.md
+# memory/
+# brain/council/

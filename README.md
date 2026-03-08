@@ -1,5 +1,7 @@
 # OpenClaw Framework 🦞
 
+![version](https://img.shields.io/badge/version-v0.1.0-blue) ![license](https://img.shields.io/badge/license-MIT-green)
+
 > A battle-tested starter kit for OpenClaw instances. Drop in, customize, deploy.
 
 ## What This Is
