@@ -44,6 +44,12 @@
         "enabled": true,
         "intervalMinutes": 30,
         "prompt": "Read HEARTBEAT.md if it exists. Follow it strictly. If nothing needs attention, reply HEARTBEAT_OK."
+      },
+
+      "usageTracking": {
+        "enabled": true,
+        "warnThresholdPercent": 80,
+        "monthlyCapUsd": 50
       }
     }
   },

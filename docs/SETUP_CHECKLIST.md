@@ -40,6 +40,13 @@ Step-by-step checklist for setting up your OpenClaw instance.
 - [ ] semantic-memory — `clawhub install semantic-memory`
 - [ ] brainos-sync — `clawhub install brainos-sync`
 
+## Budget
+
+- [ ] Set monthly cap in `brain/budgets.md`
+- [ ] Alert threshold configured (default 80%)
+- [ ] Discord channel for budget alerts set (env: `BUDGET_CHANNEL_ID`)
+- [ ] Weekly budget check runs Monday 09:00 (verify with `openclaw cron list`)
+
 ## Automation
 
 - [ ] Ran `bash scripts/setup.sh`

@@ -61,6 +61,8 @@ WORKSPACE=${WORKSPACE}
 0 2 * * * $(whoami) node ${WORKSPACE}/scripts/memory-distill.mjs >> /var/log/openclaw-memory.log 2>&1
 # Self-review — Monday 08:00
 0 8 * * 1 $(whoami) node ${WORKSPACE}/scripts/self-review.mjs >> /var/log/openclaw-review.log 2>&1
+# Budget check — Monday 09:00
+0 9 * * 1 $(whoami) node ${WORKSPACE}/scripts/budget-check.mjs >> /var/log/openclaw-budget.log 2>&1
 CRON
   echo "✅ Cron installed at $CRON_FILE (root mode)"
 else
@@ -69,7 +71,8 @@ else
 0 * * * * /usr/local/bin/openclaw-backup.sh >> $HOME/.openclaw/backup.log 2>&1
 */10 * * * * node ${WORKSPACE}/scripts/unanswered-check.mjs >> $HOME/.openclaw/unanswered.log 2>&1
 0 2 * * * node ${WORKSPACE}/scripts/memory-distill.mjs >> $HOME/.openclaw/memory.log 2>&1
-0 8 * * 1 node ${WORKSPACE}/scripts/self-review.mjs >> $HOME/.openclaw/review.log 2>&1") | crontab -
+0 8 * * 1 node ${WORKSPACE}/scripts/self-review.mjs >> $HOME/.openclaw/review.log 2>&1
+0 9 * * 1 node ${WORKSPACE}/scripts/budget-check.mjs >> $HOME/.openclaw/budget.log 2>&1") | crontab -
   echo "✅ Cron installed to user crontab (non-root mode)"
 fi
 
